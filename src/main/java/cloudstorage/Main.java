@@ -14,7 +14,7 @@ public class Main {
 
         logger.info("Подготовка к запуску");
         if (!db.openConnection()) {
-            logger.error("Не удалось подключиться к базе данных!");
+            logger.error("Не удалось подключиться к базе данных");
             System.exit(1);
         }
 

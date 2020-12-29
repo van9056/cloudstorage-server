@@ -1,6 +1,6 @@
 package cloudstorage;
 
-import cloudstorage.data.Database;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +10,7 @@ import java.util.Properties;
 
 public class ServerProperties {
 
+    private static final Logger logger = Logger.getLogger(ServerProperties.class);
     private static Properties properties = loadProperties();
 
     private static Properties loadProperties() {
@@ -17,9 +18,10 @@ public class ServerProperties {
         try (FileInputStream fis = new FileInputStream(file)) {
             Properties properties = new Properties();
             properties.load(fis);
+            logger.info("Загружена основная конфигурация");
             return properties;
         } catch (IOException e) {
-            System.err.println("[CloudStorage] Ошибка: конфигурационный файл не был загружен!");
+            logger.error(e.getMessage());
             return null;
         }
     }
